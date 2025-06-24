@@ -1,0 +1,881 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fdf0d3;
+  /* Removed background-image properties as requested */
+}
+
+html, body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.header {
+  background-color: #c62828;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10; /* Make sure header is above the logo */
+  padding: 0 0wv; /* Responsive horizontal padding */
+  box-sizing: border-box;
+}
+
+/* Center login box in the whole viewport, even behind the header */
+.login-flex-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Add top margin to login-container to visually push it below the header */
+.login-container {
+  margin-top: 80px; /* Adjust to match your header height */
+}
+
+/* On small screens, reduce the margin if needed */
+@media (max-width: 700px) {
+  .login-container {
+    margin-top: 60px;
+  }
+}
+
+.header-logo {
+  width: 60px;
+  height: auto;
+  margin-right: 20px;
+  margin-bottom: 0;
+  align-self: flex-start;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: 12px;
+}
+
+.title-left {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #fff;
+  word-break: break-word;
+  white-space: pre-line;
+  flex: 1 1 60%;
+  min-width: 0;
+}
+
+.title-right { /* This rule IS used in Create.html, Accounts.html, CreateSuccess.html, Home.html */
+  font-size: 14px;
+  text-align: right;
+  font-weight: normal;
+  color: #fff;
+  margin-left: 18px;
+  margin-top: 0;
+  word-break: break-word;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  max-width: 220px;
+  flex: 0 1 220px;
+  min-width: 0;
+  align-self: flex-start;
+  padding-right: 30px;
+}
+
+/* Responsive: stack and scale header text for small screens */
+@media (max-width: 900px) {
+  .title-left {
+    font-size: 12px;
+  }
+  .title-right {
+    font-size: 12px;
+    max-width: 120px;
+    flex-basis: 120px;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-text {
+    gap: 6px;
+  }
+  .title-left {
+    font-size: 10px;
+  }
+  .title-right {
+    font-size: 10px;
+    max-width: 80px;
+    flex-basis: 80px;
+    margin-left: 4px;
+  }
+}
+
+/* Updated login container structure */
+.login-flex-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;      /* Vertical centering */
+  width: 100vw;
+  height: 100vh;            /* Full viewport height */
+  min-height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Remove margin from login-container to keep it perfectly centered */
+.login-container {
+  margin-top: 0;
+}
+
+/* On small screens, reduce the margin if needed */
+@media (max-width: 700px) {
+  .login-container {
+    margin-top: 16px;
+  }
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Retained as it's still a container, but removed redundant height */
+.login-logo {
+  width: 120px;
+  height: auto;
+  margin: 0 auto 24px auto;
+  display: block;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.login-box {
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+  padding: 40px 30px 30px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  width: 340px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-shadow: none;
+  outline: none;
+  transition: border 0.2s;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border: 1.5px solid #0d47a1;
+}
+
+button {
+  background-color: #0d47a1;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+/* Dashboard Container (main white box) */
+.dashboard-container {
+  max-width: 1000px;
+  margin: 150px auto 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* User menu for dashboard header */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 20px; /* Add space to the right of the whole user menu */
+  padding-top: 10px;   /* Keep top padding if needed */
+}
+
+.user-name {
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.user-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  background: #eee;
+  padding-right: 0; /* Ensure no extra space inside the icon */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  min-width: 120px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  z-index: 100;
+}
+
+.dropdown-content a {
+  color: #c62828;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.dropdown-content a:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.create-account-container { /* Used in Create.html and CreateSuccess.html */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 520px;
+  min-width: 320px;
+  background: #fff;
+  padding: 48px 48px 48px 48px;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#createAccountForm label { /* Used in Create.html */
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+#createAccountForm input[type="text"], /* Used in Create.html */
+#createAccountForm input[type="password"] { /* Used in Create.html */
+  width: 95%;
+  max-width: 420px;
+  min-width: 220px;
+  padding: 14px;
+  margin-bottom: 20px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 17px;
+  box-sizing: border-box;
+}
+
+#createAccountForm button { /* Used in Create.html */
+  width: 100%;
+  padding: 12px;
+  border-radius: 20px;
+  background: #0d47a1;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#createAccountForm button:hover { /* Used in Create.html */
+  background: #1565c0;
+}
+
+#createAccountMsg { /* Used in Create.html */
+  margin-top: 10px;
+  font-size: 14px;
+  color: #c62828;
+}
+
+/* Removed: .create-account-btn-wrapper as it is unused in HTML */
+
+/* Accounts.html styles */
+.accounts-container { /* Used in Accounts.html */
+  max-width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  text-align: center;
+  position: relative; /* Ensure absolute children are positioned relative to this */
+}
+.accounts-container ul { /* Used in Accounts.html */
+  list-style: none;
+  padding: 0;
+}
+.accounts-container li { /* Used in Accounts.html */
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accounts-container li:last-child { /* Used in Accounts.html */
+  border-bottom: none;
+}
+.delete-btn, .edit-btn, .save-btn, .cancel-btn { /* Used in Accounts.html */
+  background: #c62828;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 5px;
+  transition: background 0.2s;
+}
+.edit-btn, .save-btn, .cancel-btn { /* Used in Accounts.html */
+  background: #0d47a1;
+}
+.edit-btn:hover, .save-btn:hover, .cancel-btn:hover { /* Used in Accounts.html */
+  background: #1565c0;
+}
+.delete-btn:hover { /* Used in Accounts.html */
+  background: #a31515;
+}
+.back-btn { /* Used in Accounts.html */
+  margin-top: 20px;
+  background: #0d47a1;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  z-index: 2;
+  text-decoration: none;
+}
+.back-btn:hover { /* Used in Accounts.html */
+  background: #1565c0;
+}
+.edit-fields input { /* Used in Accounts.html */
+  width: 90px;
+  margin-right: 5px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+.msg { /* Used in Accounts.html */
+  margin-top: 10px;
+  font-size: 14px;
+  color: #c62828;
+}
+.msg.success { /* Used in Accounts.html */
+  color: green;
+}
+
+/* Create Account and Manage Accounts buttons side by side */
+.green-create-btn { /* Used in Dashboard.html */
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  border-radius: 16px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(34, 139, 34, 0.10);
+  width: auto;
+  margin-top: 10px;
+  margin-right: 30px;
+}
+
+.create-account-btn { /* Used in Dashboard.html */
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: #0d3b1e;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.create-account-btn:hover { /* Used in Dashboard.html */
+  background: rgba(255,255,255,0.15);
+  color: #1565c0;
+}
+
+.add-btn-icon { /* Used in Dashboard.html */
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(34,139,34,0.08);
+  object-fit: contain;
+}
+
+.dashboard-action-btns { /* Used in Dashboard.html */
+  position: absolute;
+  top: 80px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+  z-index: 9;
+}
+
+.create-account-btn.green-create-btn { /* Used in Dashboard.html */
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  border-radius: 16px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(34, 139, 34, 0.10);
+  color: #0d3b1e;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.create-account-btn.green-create-btn:hover { /* Used in Dashboard.html */
+  background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%);
+  color: #1565c0;
+}
+
+.manage-account-btn { /* Used in Dashboard.html */
+  background: #fff;
+  color: #0d47a1;
+  border: 2px solid #0d47a1;
+  border-radius: 16px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  box-shadow: 0 4px 16px rgba(13, 71, 161, 0.08);
+}
+
+.manage-account-btn:hover { /* Used in Dashboard.html */
+  background: #0d47a1;
+  color: #fff;
+  border-color: #1565c0;
+}
+
+.manage-btn-icon { /* Used in Dashboard.html */
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+  object-fit: contain;
+}
+
+
+/* Old search and add PR section (partially used, but `search-and-add` name is misleading now) */
+/* Removed old search bar styles entirely */
+
+.search-and-add { /* Contains "Add PR" button only in Dashboard.html */
+  display: flex;
+  justify-content: flex-start; /* Aligns "Add PR" button to the left */
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.add-pr-button { /* Used in Dashboard.html */
+  background-color: #f4b000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.2s;
+}
+
+.add-pr-button:hover { /* Used in Dashboard.html */
+  background-color: #e0a000;
+}
+
+.add-pr-icon { /* Used in Dashboard.html */
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  filter: brightness(0) invert(1);
+}
+
+/* NEW Dashboard Search Bar styles */
+.dashboard-search-bar-wrapper { /* Used in Dashboard.html */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 24px 0;
+}
+
+.dashboard-search-bar-inner {
+  position: relative;
+  width: 30%;
+  min-width: 220px;
+  max-width: 400px;
+}
+
+.dashboard-search-bar {
+  width: 100%;
+  padding: 10px 44px 10px 20px; /* Reduce right padding to 44px */
+  font-size: 16px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.2s;
+  display: block;
+  box-sizing: border-box;
+}
+
+.dashboard-search-bar:focus {
+  border: 1.5px solid #0d47a1;
+}
+
+/* Custom Table Header (div-based) */
+
+.table-header-custom, .table-row-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
+
+.table-header-custom { /* Used in Dashboard.html */
+  display: flex;
+  background-color: #c62828;
+  color: white;
+  padding: 12px 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.header-item { /* Used in Dashboard.html */
+  flex: 1;
+  padding: 0 5px;
+}
+
+/* Custom Table Rows (div-based) */
+.table-row-custom {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 12px 20px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.table-row-custom:hover { /* Used in Dashboard.html */
+  background-color: #f9f9f9;
+}
+
+.table-row-custom:last-child { /* Used in Dashboard.html */
+  border-bottom: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.row-item {
+  padding: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Column specific widths/flex to match image */
+.id-col { /* Used in Dashboard.html */
+  flex: 0.8;
+}
+
+.name-col { /* Used in Dashboard.html */
+  flex: 1.5;
+}
+
+.date-col { /* Used in Dashboard.html */
+  flex: 1;
+}
+
+.status-col { /* Used in Dashboard.html */
+  flex: 1;
+}
+
+.total-col { /* Used in Dashboard.html */
+  flex: 1;
+}
+
+.edit-col { /* Used in Dashboard.html */
+  flex: 0.5;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px; /* space between buttons */
+}
+
+/* Edit Button in Rows */
+.edit-btn-custom { /* Used in Dashboard.html */
+  background: #0d47a1;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+  margin-left: auto;
+}
+
+.edit-btn-custom:hover { /* Used in Dashboard.html */
+  background: #1565c0;
+}
+
+.delete-btn-custom {
+  background: #c62828;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 8px;
+  transition: background 0.2s;
+}
+.delete-btn-custom:hover {
+  background: #a31515;
+}
+
+/* Styles for the side logo on the login page */
+.side-logo { /* Used in Home.html */
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 800px;
+  max-width: 60vw;
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
+  margin: 0;
+}
+
+/* Styles for the success button group in CreateSuccess.html */
+.success-btn-group { /* Used in CreateSuccess.html */
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.success-btn-group button { /* Used in CreateSuccess.html */
+  min-width: 170px;
+  padding: 12px 0;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  background: #0d47a1;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.success-btn-group button:hover { /* Used in CreateSuccess.html */
+  background: #1565c0;
+}
+
+.accounts-category {
+  margin-bottom: 32px;
+}
+.accounts-category h3 {
+  margin-bottom: 10px;
+  color: #0d47a1;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Ensures spacing between icons */
+}
+
+.actions button, .actions a {
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.actions button:hover, .actions a:hover {
+  opacity: 0.8;
+}
+
+input[type="search"]::-webkit-search-clear-button {
+    display: none;
+}
+
+/* Hide cards by default (desktop), show table */
+.card-view {
+    display: none;
+}
+
+.stage-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.stage-card label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.stage-card input[type="text"],
+.stage-card input[type="datetime-local"] {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.stage-card .submit-stage-btn {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Responsive rules: Show cards and hide table on small screens */
+@media screen and (max-width: 600px) {
+    .table-wrapper {
+        display: none;
+    }
+    .card-view {
+        display: block;
+    }
+}
+
+/* Hide cards by default (desktop), show table */
+.card-view {
+    display: none;
+}
+
+.stage-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.stage-card label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.stage-card input[type="text"],
+.stage-card input[type="datetime-local"] {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.stage-card .submit-stage-btn {
+    margin-top: 10px;
+    width: 100%;
+}
+
+
+
+
+
+
