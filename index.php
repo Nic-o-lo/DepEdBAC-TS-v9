@@ -128,6 +128,120 @@ $percentageOngoing = ($totalProjects > 0) ? round(($ongoingProjects / $totalProj
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
   <style>
     /* Modal styling for popups */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .modal-content.stats-modal {
+        max-width: 1100px;
+        width: 90%;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close:hover { color: black; }
+    form label {
+        display: block;
+        margin-top: 10px;
+    }
+    form input, form textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        box-sizing: border-box;
+    }
+    form button {
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        background-color: #0d47a1;
+        color: white;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Statistics Modal Styling */
+    .stats-container {
+        text-align: center;
+        padding: 20px 0;
+    }
+    .stats-container h2 {
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 1.8em;
+    }
+    .stats-grid {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 30px;
+    }
+    .stat-item {
+        background-color: #f8f9fa;
+        padding: 25px 20px;
+        border-radius: 12px;
+        flex: 1;
+        min-width: 180px;
+        max-width: 30%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #e9ecef;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .stat-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .stat-item h3 {
+        margin: 0 0 15px 0;
+        color: #555;
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+    .stat-value {
+        font-size: 2.8em;
+        font-weight: bold;
+        color: #0d47a1;
+        margin-bottom: 5px;
+    }
+    .stat-value.done {
+        color: #28a745;
+    }
+    .stat-value.ongoing {
+        color: #ffc107;
+    }
+    .stat-percentage {
+        font-size: 1em;
+        color: #6c757d;
+        font-weight: 500;
+    }
 
     /* Table styling */
     .dashboard-table {
